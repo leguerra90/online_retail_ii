@@ -101,18 +101,24 @@ To explore the work step by step, open the notebooks in `notebooks/`.
 ├── NOTES.md                    # data quirks and why each cleaning rule exists
 ├── environment.yml             # conda environment (readable)
 ├── environment.lock.yml        # exact versions for reproducibility
-├── main.py                     # pipeline entry point
-├── retail_cleaner.py           # step 1: load and clean
-├── retail_eda.py               # step 2: exploratory analysis
-├── retail_rfm.py               # step 3: RFM features
-├── retail_segmentation.py      # step 4: k-means segmentation
-├── retail_basket.py            # step 5: association rules
+├── src/
+│   ├── main.py                     # pipeline entry point
+│   ├── retail_cleaner.py           # step 1: load and clean
+│   ├── retail_eda.py               # step 2: exploratory analysis
+│   ├── retail_rfm.py               # step 3: RFM features
+│   ├── retail_segmentation.py      # step 4: k-means segmentation
+│   └── retail_basket.py            # step 5: association rules
 ├── exploration/                # one-off diagnostics (not part of the pipeline)
 │   ├── profile_data.py
 │   ├── investigate_issues.py
 │   ├── data_profile_report.txt
 │   └── issue_investigation_report.txt
 ├── notebooks/                  # 01_cleaning ... 05_basket
+│   ├── 01_cleaning.ipynb
+│   ├── 02_eda.ipynb
+│   ├── 03_rfm.ipynb
+│   ├── 04_segmentation.ipynb
+│   └── 05_basket.ipynb
 ├── results/                    # figures and tables from a run, per step
 │   ├── eda/{figures,tables}/
 │   ├── rfm/{figures,tables}/

@@ -125,7 +125,7 @@ To explore the work step by step, open the notebooks in `notebooks/`.
 ## Headline numbers
 
 - Raw transactions: **1,067,371** rows, **43** countries, **91.9%** from the UK.
-- After cleaning: **[fill]** valid sales rows, **[fill]** total revenue.
+- After cleaning: **1,007,912** valid sales rows, **£19,642,692.15** total revenue.
 - Customers (with an ID): **5,852**.
 - Valid invoices for basket analysis: **39,514**.
 

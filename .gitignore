@@ -1,0 +1,15 @@
+# Data — large and not ours to redistribute
+kaggle_customer_intelligence/*.csv
+kaggle_customer_intelligence/*.parquet
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environment
+.venv/
+env/
+
+# OS
+.DS_Store

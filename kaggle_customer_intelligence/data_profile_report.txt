@@ -1,0 +1,103 @@
+======================================================================
+SIZE AND SHAPE
+======================================================================
+Rows:    1,067,371
+Columns: 8
+Memory:  345.2 MB (deep)
+
+======================================================================
+COLUMNS AND TYPES
+======================================================================
+               dtype  non_null   nulls  null_%  unique
+Invoice       string   1067371       0    0.00   53628
+StockCode     string   1067371       0    0.00    5305
+Description   string   1062989    4382    0.41    5698
+Quantity       int64   1067371       0    0.00    1057
+InvoiceDate   string   1067371       0    0.00   47635
+Price        float64   1067371       0    0.00    2807
+Customer ID  float64    824364  243007   22.77    5942
+Country       string   1067371       0    0.00      43
+
+======================================================================
+SAMPLE VALUES (first 5 non-null per column)
+======================================================================
+Invoice:
+  ['489434', '489435', '489436', '489437', '489438']
+StockCode:
+  ['85048', '79323P', '79323W', '22041', '21232']
+Description:
+  ['15CM CHRISTMAS GLASS BALL 20 LIGHTS', 'PINK CHERRY LIGHTS', ' WHITE CHERRY LIGHTS', 'RECORD FRAME 7" SINGLE SIZE ', 'STRAWBERRY CERAMIC TRINKET BOX']
+Quantity:
+  [np.int64(12), np.int64(48), np.int64(24), np.int64(10), np.int64(18)]
+InvoiceDate:
+  ['2009-12-01 07:45:00', '2009-12-01 07:46:00', '2009-12-01 09:06:00', '2009-12-01 09:08:00', '2009-12-01 09:24:00']
+Price:
+  [np.float64(6.95), np.float64(6.75), np.float64(2.1), np.float64(1.25), np.float64(1.65)]
+Customer ID:
+  [np.float64(13085.0), np.float64(13078.0), np.float64(15362.0), np.float64(18102.0), np.float64(12682.0)]
+Country:
+  ['United Kingdom', 'France', 'USA', 'Belgium', 'Australia']
+
+======================================================================
+NUMERIC SUMMARY (Quantity, Price)
+======================================================================
+Quantity:
+  min:        -80995
+  max:        80995
+  mean:       9.9389
+  median:     3.0
+  negatives:  22,950
+  zeros:      0
+
+Price:
+  min:        -53594.36
+  max:        38970.0
+  mean:       4.6494
+  median:     2.1
+  negatives:  5
+  zeros:      6,202
+
+======================================================================
+DATE PARSING (InvoiceDate)
+======================================================================
+Failed to parse: 0
+Date range:      2009-12-01 07:45:00  to  2011-12-09 12:50:00
+
+======================================================================
+KNOWN ISSUE CHECKS
+======================================================================
+Cancellation invoices (start 'C'):  19,494  (1.83%)
+Missing Customer ID:                243,007  (22.77%)
+Negative Quantity:                  22,950
+Zero or negative Price:             6,207
+Known non-product StockCodes:       5,813
+  codes present: ['ADJUST', 'ADJUST2', 'AMAZONFEE', 'B', 'BANK CHARGES', 'C2', 'CRUK', 'D', 'DOT', 'M', 'PADS', 'POST', 'S']
+StockCodes that are letters only:   5,477
+  examples: ['ADJUST', 'AMAZONFEE', 'B', 'CRUK', 'D', 'DCGSLBOY', 'DCGSLGIRL', 'DCGSSBOY', 'DCGSSGIRL', 'DOT', 'GIFT', 'M', 'PADS', 'POST', 'S']
+Descriptions with stray whitespace: 213,035
+Fully duplicated rows:              34,335  (3.22%)
+
+======================================================================
+COUNTRY BREAKDOWN (top 15 by row count)
+======================================================================
+  United Kingdom               981,330  (91.94%)
+  EIRE                          17,866  ( 1.67%)
+  Germany                       17,624  ( 1.65%)
+  France                        14,330  ( 1.34%)
+  Netherlands                    5,140  ( 0.48%)
+  Spain                          3,811  ( 0.36%)
+  Switzerland                    3,189  ( 0.30%)
+  Belgium                        3,123  ( 0.29%)
+  Portugal                       2,620  ( 0.25%)
+  Australia                      1,913  ( 0.18%)
+  Channel Islands                1,664  ( 0.16%)
+  Italy                          1,534  ( 0.14%)
+  Norway                         1,455  ( 0.14%)
+  Sweden                         1,364  ( 0.13%)
+  Cyprus                         1,176  ( 0.11%)
+
+Distinct countries: 43
+
+======================================================================
+Done. Nothing was changed. Use this to plan the cleaning step.
+======================================================================

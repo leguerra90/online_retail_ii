@@ -1,0 +1,7 @@
+cluster,customers,recency,frequency,monetary,spend_per_invoice,items_per_invoice,variety_ratio,pct_customers,uk_share,top_country
+0,1020,149.39,3.31,2155.66,720.58,591.74,34.51,17.4,0.81,United Kingdom
+1,1272,86.51,8.37,2063.73,263.76,150.82,11.94,21.7,0.94,United Kingdom
+2,1086,91.95,2.22,463.58,221.74,135.44,17.77,18.6,0.93,United Kingdom
+3,1175,490.17,1.72,465.36,277.21,164.5,20.53,20.1,0.93,United Kingdom
+4,679,42.49,24.85,15940.08,648.12,385.05,11.74,11.6,0.9,United Kingdom
+5,620,335.51,2.04,202.45,100.8,45.72,4.57,10.6,0.95,United Kingdom

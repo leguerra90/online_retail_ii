@@ -1,0 +1,170 @@
+======================================================================
+1. DATE PARSING (with the corrected ISO format)
+======================================================================
+Rows:            1,067,371
+Failed to parse: 0
+Date range:      2009-12-01 07:45:00  to  2011-12-09 12:50:00
+
+======================================================================
+2. ONE STOCKCODE, MANY DESCRIPTIONS?
+======================================================================
+StockCodes with a description:        4,778
+StockCodes with >1 description:       1,190  (24.9%)
+
+Worst offenders (code: number of distinct descriptions):
+
+  20713  ->  8 descriptions
+        1,372  JUMBO BAG OWLS
+            2  FOUND
+            1  WRONGLY MARKED. 23343 IN BOX
+            1  MISSING
+            1  WRONGLY CODED-23343
+            1  WRONGLY MARKED 23343
+
+  23084  ->  7 descriptions
+        1,051  RABBIT NIGHT LIGHT
+            1  TEMP ADJUSTMENT
+            1  ALLOCATE STOCK FOR DOTCOM ORDERS TA
+            1  ADD STOCK TO ALLOCATE ONLINE ORDERS
+            1  FOR ONLINE RETAIL ORDERS
+            1  AMAZON
+
+  21181  ->  7 descriptions
+        1,730  PLEASE ONE PERSON METAL SIGN
+          181  PLEASE ONE PERSON  METAL SIGN
+            2  ADJUSTMENT
+            1  MISSING
+            1  ON CARGO ORDER
+            1  CHECK
+
+  22423  ->  7 descriptions
+        4,412  REGENCY CAKESTAND 3 TIER
+            3  DAMAGED
+            2  SMASHED
+            2  DAMAGES
+            2  FAULTY
+            1  WONKY BOTTOM/BROKEN
+
+  22734  ->  7 descriptions
+          792  SET OF 6 RIBBONS VINTAGE CHRISTMAS
+            5  AMAZON
+            1  CARTON QNTY WAS 216 NOT 144 AS STAT
+            1  AMAZON ADJUSTMENT
+            1  AMENDMENT
+            1  AMAZON SALES
+
+  21830  ->  6 descriptions
+          283  ASSORTED CREEPY CRAWLIES
+            1  MERCHANT CHANDLER CREDIT ERROR, STO
+            1  SOLD AS 1
+            1  ?
+            1  DAMAGED
+            1  OOPS ! ADJUSTMENT
+
+  22719  ->  6 descriptions
+          251  GUMBALL MONOCHROME COAT RACK
+            5  GUMBALL COATHOOK., BLACK & WHITE
+            1  22467
+            1  WRONG BARCODE (22467)
+            1  SOLD AS 22467
+            1  WRONG CODE
+
+  85175  ->  6 descriptions
+          469  CACTI T-LIGHT CANDLES
+            1  DOTCOM SOLD SETS
+            1  AMAZON SOLD SETS
+            1  WRONGLY SOLD SETS
+            1  ? SOLD AS SETS?
+            1  CHECK
+
+Note: many of these are blanks like '?', 'damaged', 'lost', or
+genuine relabels. We pick one description per code in cleaning.
+
+======================================================================
+3. MISSING DESCRIPTIONS — RECOVERABLE FROM STOCKCODE?
+======================================================================
+Rows with missing Description:        4,382
+  of these, StockCode seen elsewhere: 4,021  (could backfill)
+  StockCode never has a description:  361  (likely junk/adjustment rows)
+
+  StockCodes among the non-recoverable missing rows:
+   ['10124C', '15060A', '16065A', '16131', '16132', '16155H', '16156A', '16161N', '16169H', '16195', '16200A', '16201C', '16210', '16222B', '16240', '16243A', '16245B', '16248A', '16249B', '16255']
+
+======================================================================
+4. MISSING CUSTOMER ID — WHAT ARE THESE ROWS?
+======================================================================
+Rows missing Customer ID:             243,007  (22.77%)
+  of these, are cancellations:        750
+  of these, look like normal sales:   236,122
+  invoices affected:                  8,752
+
+  These can't be tied to a customer, so they're out for RFM and
+  segmentation. They could still feed invoice-level basket rules.
+
+======================================================================
+5. CANCELLATIONS, NEGATIVE QUANTITY, BAD PRICE — OVERLAP
+======================================================================
+Cancellation rows (invoice 'C'):      19,494
+Negative quantity rows:               22,950
+  ... that ARE cancellations:         19,493
+  ... that are NOT cancellations:     3,457  (adjustments?)
+Cancellations WITHOUT negative qty:   1
+
+Zero-price rows:                      6,202
+Negative-price rows:                  5
+
+Examples — negative quantity, NOT a cancellation:
+Invoice StockCode  Description  Quantity  Price  Customer ID
+ 489464     21733 85123a mixed       -96    0.0          NaN
+ 489463     71477        short      -240    0.0          NaN
+ 489467    85123A  21733 mixed      -192    0.0          NaN
+ 489521     21646         <NA>       -50    0.0          NaN
+ 489655     20683         <NA>       -44    0.0          NaN
+ 489660     35956         lost     -1043    0.0          NaN
+ 489663    35605A      damages      -117    0.0          NaN
+ 489806     18010         <NA>      -770    0.0          NaN
+
+Examples — zero price:
+Invoice StockCode  Description  Quantity  Price  Customer ID
+ 489464     21733 85123a mixed       -96    0.0          NaN
+ 489463     71477        short      -240    0.0          NaN
+ 489467    85123A  21733 mixed      -192    0.0          NaN
+ 489521     21646         <NA>       -50    0.0          NaN
+ 489655     20683         <NA>       -44    0.0          NaN
+ 489659     21350         <NA>       230    0.0          NaN
+ 489660     35956         lost     -1043    0.0          NaN
+ 489663    35605A      damages      -117    0.0          NaN
+
+Examples — negative price:
+Invoice StockCode     Description  Quantity     Price  Customer ID
+A506401         B Adjust bad debt         1 -53594.36          NaN
+A516228         B Adjust bad debt         1 -44031.79          NaN
+A528059         B Adjust bad debt         1 -38925.87          NaN
+A563186         B Adjust bad debt         1 -11062.06          NaN
+A563187         B Adjust bad debt         1 -11062.06          NaN
+
+======================================================================
+6. FULLY DUPLICATED ROWS
+======================================================================
+Rows involved in any duplication:     67,242
+Rows that would be dropped (keep one): 34,335
+
+A duplicated group, shown in full:
+Invoice StockCode                      Description  Quantity         InvoiceDate  Price  Customer ID
+ 489517     21491  SET OF THREE VINTAGE GIFT WRAPS         1 2009-12-01 11:34:00   1.95      16329.0
+ 489517     21491  SET OF THREE VINTAGE GIFT WRAPS         1 2009-12-01 11:34:00   1.95      16329.0
+ 489517     21821 GLITTER STAR GARLAND WITH BELLS          1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21821 GLITTER STAR GARLAND WITH BELLS          1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21912         VINTAGE SNAKES & LADDERS         1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21912         VINTAGE SNAKES & LADDERS         1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21912         VINTAGE SNAKES & LADDERS         1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21913   VINTAGE SEASIDE JIGSAW PUZZLES         1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     21913   VINTAGE SEASIDE JIGSAW PUZZLES         1 2009-12-01 11:34:00   3.75      16329.0
+ 489517     22130 PARTY CONE CHRISTMAS DECORATION          6 2009-12-01 11:34:00   0.85      16329.0
+
+Same invoice, same product, same minute, same price. Almost
+certainly a logging artefact, so we keep one of each.
+
+======================================================================
+Done. Diagnostics only. Cleaning rules come next.
+======================================================================

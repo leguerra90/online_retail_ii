@@ -1,0 +1,7 @@
+RFM feature notes
+=================
+Reference date (recency anchor): 2011-12-10 (day after the last invoice).
+Frequency: count of distinct invoices per customer.
+Monetary: GROSS total spend. Cancellations were removed in cleaning, so returns are NOT netted out; a customer who returned goods still shows full spend. Known, documented bias.
+Dropped invoices (placed-and-cancelled phantom): ['541431', '581483'].
+Scoring: recency and monetary use rank-based quintiles (1-5), recency reversed (recent = 5). Frequency uses fixed bins (1, 2, 3-5, 6-10, 11+) because a quarter of customers share frequency = 1, which makes quintiles arbitrary at the bottom.

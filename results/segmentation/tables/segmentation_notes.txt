@@ -1,0 +1,9 @@
+Segmentation notes
+==================
+Features: recency, frequency, monetary, spend_per_invoice, items_per_invoice, variety_ratio.
+variety_ratio = distinct products / invoices (history-wide range). Shaky for one-time buyers, where it is just their single basket size; only meaningful for repeat customers.
+Logged before scaling: frequency, monetary, spend_per_invoice, items_per_invoice, variety_ratio (recency left raw). All six then standardised to z-scores.
+Phantom invoices excluded: ['541431', '581483'].
+k-means: n_init=10, random_state=42. Silhouette computed on a sample for speed.
+Country is profiled per cluster, not used as a clustering feature.
+Cluster names (k=6): 0 = Big-basket bulk buyers, 1 = Frequent regulars, 2 = Occasional low-value, 3 = Lapsed one-off buyers, 4 = Champions, 5 = Dormant / lost

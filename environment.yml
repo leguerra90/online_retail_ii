@@ -1,0 +1,45 @@
+# Conda environment for the Online Retail II customer intelligence project.
+#
+# Create it with:
+#     conda env create -f environment.yml
+#     conda activate retail-customer-intelligence
+#
+# Once it works on your machine, you can freeze exact versions for the repo
+# with:  conda env export --no-builds > environment.lock.yml
+
+name: retail-customer-intelligence
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+
+  # Core data handling — used in every step
+  - pandas>=2.0
+  - numpy>=1.24
+  - pyarrow>=12        # parquet read/write for the cleaned and feature tables
+
+  # Plotting — EDA, RFM, segmentation charts
+  - matplotlib>=3.7
+
+  # Modelling — segmentation (scaling, k-means, silhouette, PCA)
+  - scikit-learn>=1.3
+
+  # 2D projection of the clusters
+  - umap-learn>=0.5
+
+  # Market-basket analysis (FP-Growth, association rules) — next step
+  - mlxtend>=0.23
+
+  # Progress bars and timing for the basket step
+  - tqdm>=4.65
+
+  # Excel (.xlsx) read/write support for pandas
+  - openpyxl>=3.1
+
+  # Notebooks, for presenting the analysis (optional but handy for the repo)
+  - jupyterlab>=4.0
+
+  # Keep pip available in case you add a package conda-forge doesn't carry
+  - pip

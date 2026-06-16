@@ -1,0 +1,9 @@
+Basket analysis notes
+=====================
+Unit: invoice (not customer). Run on ALL valid invoices, anonymous baskets included.
+Items identified by StockCode; presence/absence, not quantity.
+min_support = 0.01 ; min_lift = 1.0.
+Rules found: 1772.
+Ranked by lift (popularity-independent). Each rule is classified by 'family_relation', from the overlap of core words after stripping colour/pattern/size words: 'pattern_variant' (same product, different colour/pattern), 'same_type' (same product type, different sub-product), 'cross_type' (genuinely different products, the interesting ones). family_overlap is the 0-1 score behind the label.
+Limit: rules show co-occurrence, not cause; both items may be driven by season or promotion.
+Phantom invoices excluded: ['541431', '581483'].

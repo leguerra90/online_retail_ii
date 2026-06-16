@@ -100,7 +100,6 @@ To explore the work step by step, open the notebooks in `notebooks/`.
 ├── README.md
 ├── NOTES.md                    # data quirks and why each cleaning rule exists
 ├── environment.yml             # conda environment (readable)
-├── environment.lock.yml        # exact versions for reproducibility
 ├── src/
 │   ├── main.py                     # pipeline entry point
 │   ├── retail_cleaner.py           # step 1: load and clean
@@ -111,9 +110,7 @@ To explore the work step by step, open the notebooks in `notebooks/`.
 ├── exploration/                # one-off diagnostics (not part of the pipeline)
 │   ├── profile_data.py
 │   ├── investigate_issues.py
-│   ├── data_profile_report.txt
-│   └── issue_investigation_report.txt
-├── notebooks/                  # 01_cleaning ... 05_basket
+├── notebooks/                 
 │   ├── 01_cleaning.ipynb
 │   ├── 02_eda.ipynb
 │   ├── 03_rfm.ipynb
@@ -124,8 +121,9 @@ To explore the work step by step, open the notebooks in `notebooks/`.
 │   ├── rfm/{figures,tables}/
 │   ├── segmentation/{figures,tables}/
 │   └── basket/{figures,tables}/
-└── kaggle_customer_intelligence/   # data dir (gitignored): the raw CSV plus
-                                    # clean_sales / rfm_features / customer_segments
+├── kaggle_customer_intelligence/
+│   ├── data_profile_report.txt
+│   └── issue_investigation_report.txt 
 ```
 
 ## Headline numbers

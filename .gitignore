@@ -1,6 +1,7 @@
 # Data — large and not ours to redistribute
 kaggle_customer_intelligence/*.csv
 kaggle_customer_intelligence/*.parquet
+kaggle_customer_intelligence/*.zip
 
 # Python
 __pycache__/
